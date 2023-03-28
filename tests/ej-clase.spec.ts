@@ -1,10 +1,12 @@
-// import "mocha";
-// import { expect } from "chai";
-// import { clientCode } from "../src/ej-clase"
-// import { WaterCreator } from "../src/watercreator";
+import "mocha";
+import { expect } from "chai";
+import { sum } from "../src/ej-clase"
 
-// describe("clientCode() function test", () => {
-//   it("clientCode() returns Squirtle", () => {
-//     expect(clientCode(new WaterCreator('Squirtle', 'Azul', '1ª'))).to.be.eql('Soy un Squirtle, soy de color Azul, mi tipo es el Aguay estoy en mi 1ª evolución.');
-//   });  
-// });
+describe('function sum test', () => {
+  it('should return the sum of two numbers', () => {
+    expect(sum(2, 3)).to.equal(5);
+    expect(sum(0, 0)).to.equal(0);
+    expect(sum(-1, 1)).to.equal(0);
+  });
+});
+
