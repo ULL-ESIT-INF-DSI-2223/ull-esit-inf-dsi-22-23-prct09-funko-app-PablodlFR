@@ -1,2 +1,2 @@
 [![Node.js CI](https://github.com/ULL-ESIT-INF-DSI-2223/P8/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/P8/actions/workflows/node.js.yml)
-[![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2223/P8/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2223/P8?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR?branch=main)
