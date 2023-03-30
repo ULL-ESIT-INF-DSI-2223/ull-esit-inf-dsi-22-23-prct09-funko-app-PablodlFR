@@ -120,7 +120,7 @@ export abstract class FilterMapReduceTemplate {
   }
 }
 ```
-Como podemos ver se implementan los métodos _map_ y _filter_ sin hacer uso de sus homónimos en TypeScript y se ha declarado reduce como un método abstracto, tal y como es indicado en el enunciado. Además también se han implementado varios métodos _hook_ antes y despúes de las operaciones anterioremente mencionadas. Finalmente se crea el esqueleto del algoritmo que contiene todas las operaciones y los métodos _hook_ en los lugares correspondientes.
+Como podemos ver se implementan los métodos _map_ y _filter_ sin hacer uso de sus homónimos en TypeScript y se ha declarado _reduce_ como un método abstracto, tal y como es indicado en el enunciado. Además también se han implementado varios métodos _hook_ antes y despúes de las operaciones anterioremente mencionadas. Finalmente se crea el esqueleto del algoritmo que contiene todas las operaciones y los métodos _hook_ en los lugares correspondientes.
 \
 \
 A continuación se han desarrollado cuatro subclases que heredan de la clase anteriormente mencionada (_FilterMapAddReduce_, _FilterMapSubReduce_, _FilterMapProdReduce_, _FilterMapDivReduce_) las cuales concretan el método _reduce_ anteriormente declarado como abstracto. Estas clases son las siguientes:
@@ -260,7 +260,7 @@ Por último se han realizado las pruebas pertinentes en la traza de cada una de 
   ✔ FilterMapDivReduce().run(list) should return 0.009523809523809523
   ✔ FilterMapDivReduce().run(list2) should return 8
   ✔ FilterMapDivReduce().run(list3) should return 21
-  
+
 ----------------------------|---------|----------|---------|---------|-------------------
 File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ----------------------------|---------|----------|---------|---------|-------------------
