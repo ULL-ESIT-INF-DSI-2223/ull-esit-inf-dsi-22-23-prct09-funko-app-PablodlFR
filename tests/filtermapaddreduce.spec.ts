@@ -1,6 +1,6 @@
 import "mocha";
 import { expect } from "chai";
-import { FilterMapAddReduce } from "../src/filtermapaddreduce"
+import { FilterMapAddReduce } from "../src/ej-clase/filtermapaddreduce"
 
 const list = [1, 2, 3, 4, 5, 6]
 const list2 = [ 2, 4, 5, 7]

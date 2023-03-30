@@ -1,6 +1,11 @@
 {
   "entryPoints": [
-    //"./src/ej-clase",
+    "./src/ej-clase/filtermapaddreduce.ts",
+    "./src/ej-clase/filtermapsubreduce.ts",
+    "./src/ej-clase/filtermapprodreduce.ts",
+    "./src/ej-clase/filtermapdivreduce.ts",
+    "./src/ej-clase/filtermapareducetemplate.ts",
+    "./src/ej-clase/functions.ts"
   ],
   "out": "./docs" 
 }
