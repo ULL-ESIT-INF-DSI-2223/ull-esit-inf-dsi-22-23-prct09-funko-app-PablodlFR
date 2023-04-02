@@ -1,4 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-8d59dc4de5201274e310e4c54b9627a8934c3b88527886e3b421487c677d23eb.svg)](https://classroom.github.com/a/fmDo8ROl)
 # Práctica 9 - Aplicación de registro de Funko Pops
 Esta práctica consiste en la elaboración de una aplicación que nos permita registar las colecciones de Funko Pops de los usuarios, haciendo estas persistentes gracias a la API síncrona de Node.js para trabajar con el sistema de ficheros. Además se mostrará el ejercicio realizado en la hora de prácticas (PE101).
 \
@@ -356,8 +355,6 @@ Una vez creada la clase, pasamos a la parte donde gestionamos las colecciones de
 \
 \
 A continuación pasaremos a comentar los distintos comandos implementados y su funcionamiento. Para todos se ha utilizado la API síncrona de Node.js con el fin de trabajar con el sistema de fichero.
-\
-\
 ### Añadir un Funko a la lista
 El comando _add_ nos debe permitir añadir un Funko al directorio del usuario en cuestión con la información pasada por la línea de comandos.
 \
@@ -722,6 +719,8 @@ La principal diferencia respecto al comando _list_ es que en este caso tenemos u
 A continuación veremos el funcionamiento de todos los comandos mostrados anteriormente.
 #### _Add_
 ```
+node dist/funko-pops/yargs.js add --user pablo --id 3 --name "Ran Mouri" --desc "Classic Ran Mouri 1996" --type "Pop!" --genre "Anime" --franch "Detective Conan" --franchnum 42 --excl false --spcfeat "No tiene ninguna característica especial" --market 75
+Nuevo Funko con el ID = 3 se ha añadido a la colección de pablo
 ```
 
 ## Conclusión

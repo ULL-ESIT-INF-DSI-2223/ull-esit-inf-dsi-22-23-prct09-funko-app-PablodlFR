@@ -96,7 +96,7 @@ yargs(hideBin(process.argv))
           specialFeatures: argv.spcfeat,
           marketValue: argv.market        
         }
-        fs.writeFileSync(`${dirPath}/${argv.name}.json`, JSON.stringify(funkosJSON));
+        fs.writeFileSync(`${dirPath}/${argv.name}.json`, JSON.stringify(funkosJSON, null, 2));
         console.log(chalk.green.bold(`Nuevo Funko con el ID = ${argv.id} se ha añadido a la colección de ${argv.user}`));
       }
     } else {
