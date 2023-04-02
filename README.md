@@ -719,8 +719,28 @@ La principal diferencia respecto al comando _list_ es que en este caso tenemos u
 A continuación veremos el funcionamiento de todos los comandos mostrados anteriormente.
 #### _Add_
 ```
-node dist/funko-pops/yargs.js add --user pablo --id 3 --name "Ran Mouri" --desc "Classic Ran Mouri 1996" --type "Pop!" --genre "Anime" --franch "Detective Conan" --franchnum 42 --excl false --spcfeat "No tiene ninguna característica especial" --market 75
-Nuevo Funko con el ID = 3 se ha añadido a la colección de pablo
+$node dist/funko-pops/yargs.js add --user pablo --id 3 --name "Ran Mouri" --desc "Classic Ran Mouri 1996" --type "Pop!" --genre "Anime" --franch "Detective Conan" --franchnum 42 --excl false --spcfeat "No tiene ninguna característica especial" --market 75
+```
+
+<span style="color:green">Nuevo Funko con el ID = 3 se ha añadido a la colección de pablo
+```
+
+$node dist/funko-pops/yargs.js add --user pablo --id 3 --name "Ran Mouri" --desc "Classic Ran Mouri 1996" --type "Pop!" --genre "Anime" --franch "Detective Conan" --franchnum 42 --excl false --spcfeat "No tiene ninguna característica especial" --market 75
+Ya existe un Funko con el ID = 3 en la colección de pablo
+
+$node dist/funko-pops/yargs.js add --user pedro --id 3 --name "Ran Mouri" --desc "Classic Ran Mouri 1996" --type "Pop!" --genre "Anime" --franch "Detective Conan" --franchnum 42 --excl false --spcfeat "No tiene ninguna característica especial" --market 75
+El usuario pedro no tiene una colección
+```
+#### _Update_
+```
+$node dist/funko-pops/yargs.js update --user pablo --id 3 market 100
+El Funko con el ID = 3 ha sido actualizado en la colección de pablo
+
+$node dist/funko-pops/yargs.js update --user pablo --id 17 market 100
+No existe ningún funko con el ID = 17 en la colección de pablo
+
+$node dist/funko-pops/yargs.js update --user pedro --id 17 market 100
+El usuario pedro no tiene una colección
 ```
 
 ## Conclusión
