@@ -821,6 +821,24 @@ En los ejemplos anteriores se indica al lado de cada mensaje el color correspond
 ![Imagen mostrando el uso de chalk](https://i.postimg.cc/cC3w4gyC/Captura-de-pantalla-de-2023-04-02-15-34-26.png)
 \
 ![Imagen mostrando el uso de chalk](https://i.postimg.cc/V6pX89h2/Captura-de-pantalla-de-2023-04-02-15-35-08.png)
+\
+\
+Por último también se realizaron las pruebas correspondientes de la clase Funko, que consta de un único método _print()_:
+```
+  function print test
+    ✔ funko1.print() should return funko1
+    ✔ funko2.print() should return funko2
+    ✔ funko3.print() should return funko3
+    ✔ funko4.print() should return funko4
+
+-----------------------------|---------|----------|---------|---------|-------------------
+File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------------|---------|----------|---------|---------|-------------------
+ funko-pops                  |     100 |    94.44 |     100 |     100 |                   
+  funko.ts                   |     100 |    92.85 |     100 |     100 | 37                
+  utilities.ts               |     100 |      100 |     100 |     100 |                   
+-----------------------------|---------|----------|---------|---------|-------------------
+```
 ## Conclusión
 Con lo mostrado en este informe hemos aprendido varias cosas, principalemente relacionadas con el uso de la API síncrona de Node.js para trabajar con el sistema de ficheros, característica que hasta esta práctica no hemos visto y es fundamental saber trabajar con ficheros en cualquier lenguaje de programación.
 \
@@ -839,7 +857,3 @@ Para la realización de esta práctica se han consultado las siguientes fuentes 
 * [API Síncrona](https://nodejs.org/docs/latest-v19.x/api/fs.html)
 * [Yargs](https://www.npmjs.com/package/yargs)
 * [Chalk](https://www.npmjs.com/package/chalk)
-
-
-
-
