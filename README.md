@@ -1,5 +1,5 @@
 # Práctica 9 - Aplicación de registro de Funko Pops
-Esta práctica consiste en la elaboración de una aplicación que nos permita registar las colecciones de Funko Pops de los usuarios, haciendo estas persistentes gracias a la API síncrona de Node.js para trabajar con el sistema de ficheros. Además se mostrará el ejercicio realizado en la hora de prácticas (PE101).
+Esta práctica consiste en la elaboración de una aplicación que nos permita registar las colecciones de Funko Pops de los usuarios. Haciendo estas persistentes gracias a la API síncrona de Node.js para trabajar con el sistema de ficheros. Además se mostrará el ejercicio realizado en la hora de prácticas (PE101).
 \
 \
 El código fuente de ambos ejercicios se encuentra organizado en diferentes directorios y se hace uso de sintaxis ES para importar/exportar las distintas entidades.
@@ -120,7 +120,7 @@ export abstract class FilterMapReduceTemplate {
   }
 }
 ```
-Como podemos ver se implementan los métodos _map_ y _filter_ sin hacer uso de sus homónimos en TypeScript y se ha declarado _reduce_ como un método abstracto, tal y como es indicado en el enunciado. Además también se han implementado varios métodos _hook_ antes y despúes de las operaciones anterioremente mencionadas. Finalmente se crea el esqueleto del algoritmo que contiene todas las operaciones y los métodos _hook_ en los lugares correspondientes.
+Como podemos ver se implementan los métodos _map_ y _filter_ sin hacer uso de sus homónimos en TypeScript y se ha declarado _reduce_ como un método abstracto, tal y como es indicado en el enunciado. Además, también se han implementado varios métodos _hook_ antes y despúes de las operaciones anterioremente mencionadas. Finalmente se crea el esqueleto del algoritmo que contiene todas las operaciones y los métodos _hook_ en los lugares correspondientes.
 \
 \
 A continuación se han desarrollado cuatro subclases que heredan de la clase anteriormente mencionada (_FilterMapAddReduce_, _FilterMapSubReduce_, _FilterMapProdReduce_, _FilterMapDivReduce_) las cuales concretan el método _reduce_ anteriormente declarado como abstracto. Estas clases son las siguientes:
@@ -243,7 +243,7 @@ export function isPar(num: number) {
   }
 }
 ```
-Por último se han realizado las pruebas pertinentes en la traza de cada una de las cuatro subclases anteriormente mencionadas, siendo dichas pruebas y su encubrimiento los siguientes:
+Por último se han realizado las pruebas pertinentes en la traza de cada una de las cuatro subclases anteriormente mencionadas, siendo dichas pruebas y su cubrimiento los siguientes:
 ```
   ✔ FilterMapAddReduce().run(list) should return 15
   ✔ FilterMapAddReduce().run(list2) should return 8
@@ -274,7 +274,7 @@ All files                   |     100 |      100 |     100 |     100 |
 ----------------------------|---------|----------|---------|---------|-------------------
 ```
 ## Ejercicio de guion - Aplicación de registro de Funko Pops
-Esta práctica consiste en implementar una aplicación para almacenar distintos Funko Pops en formato JSON pertenecientes a la colección de un usuario.
+Esta práctica tiene como finalidad implementar una aplicación para almacenar distintos Funko Pops en formato JSON pertenecientes a la colección de un usuario.
 \
 \
 Lo primero es crear una clase Funko con los elementos indicados en el guion de la práctica. La clase desarrollada es la siguiente:
@@ -319,10 +319,7 @@ export class Funko {
   }  
 }
 ```
-Como podemos ver es una clase muy simple, donde se implementa el constructor con los atributos indicados y después tenemos una función _print()_ para imprimir por pantalla toda la información perteneciente a un Funko. Además, tal y como se indica en el guion, se han creado una serie de enumerados y tipo de datos para los atributos del tipo de Funko, género y franquicia.
-\
-\
-Estos son los siguientes:
+Como podemos ver es una clase muy simple, donde se implementa el constructor con los atributos indicados y después tenemos una función _print()_ para imprimir por pantalla toda la información perteneciente a un Funko. Además, tal y como se indica en el guion, se han creado una serie de enumerados y tipo de datos para los atributos del tipo de Funko, género y franquicia, estos son los siguientes:
 ```TypeScript
 /**
  * Enum to set the Funko's type.
