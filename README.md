@@ -835,13 +835,9 @@ Al igual que en la práctica anterior se han incluido los flujos de trabajo de G
 
 ## Bibliografía
 Para la realización de esta práctica se han consultado las siguientes fuentes bibliográficas:
-\
 * [Guion de la práctica 9](https://ull-esit-inf-dsi-2223.github.io/prct09-filesystem-funko-app/)
-\
 * [API Síncrona](https://nodejs.org/docs/latest-v19.x/api/fs.html)
-\
 * [Yargs](https://www.npmjs.com/package/yargs)
-\
 * [Chalk](https://www.npmjs.com/package/chalk)
 
 

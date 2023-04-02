@@ -7,7 +7,7 @@
     "./src/ej-clase/filtermapreducetemplate.ts",
     "./src/ej-clase/functions.ts",
     "./src/funko-pops/funko.ts",
-    "./src/funko-pops/yargs.ts",
+    "./src/funko-pops/clientcode.ts",
     "./src/funko-pops/utilities.ts"
   ],
   "out": "./docs" 
