@@ -348,7 +348,10 @@ export enum Genre {
  */
 type FranchiseType = "The Big Bang Theory" | "Detective Conan" | "Mario Bros" | "Pokémon" | "Sonic The Hedgehog"
 ```
-Una vez creada la clase, pasamos a la parte donde gestionamos las colecciones de los usuarios mediante la línea de comandos usando el paquete _yargs_. Todo esto se encuentra en un fichero homónimo (yargs.ts). La gestión de las colecciones se realizará de la siguiente manera, en la raíz del proyecto tenemos el directorio _collections_, donde dentro de cada uno se encuentran tantos subdirectorios como usuarios, cada uno con el nombre del usuario, es de esta forma por la que sabemos si un usario tiene o no una colección y por último, dentro de cada directorio de usuario tenemos los Funkos en ficheros _JSON_ separados tal y como se pide en la práctica.
+Una vez creada la clase, pasamos a la parte donde gestionamos las colecciones de los usuarios mediante la línea de comandos usando el paquete _yargs_. Todo esto se encuentra en un fichero homónimo (yargs.ts). La gestión de las colecciones se realizará de la siguiente manera:
+\
+\
+En la raíz del proyecto tenemos el directorio _collections_, donde dentro de cada uno se encuentran tantos subdirectorios como usuarios, cada uno con el nombre del usuario, es de esta forma por la que sabemos si un usario tiene o no una colección y por último, dentro de cada directorio de usuario tenemos los Funkos en ficheros _JSON_ separados tal y como se pide en la práctica.
 \
 \
 A continuación pasaremos a comentar los distintos comandos implementados y su funcionamiento. Para todos se ha utilizado la API síncrona de Node.js con el fin de trabajar con el sistema de fichero.
