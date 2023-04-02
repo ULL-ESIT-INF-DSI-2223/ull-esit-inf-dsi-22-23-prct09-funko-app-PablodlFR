@@ -720,13 +720,10 @@ A continuación veremos el funcionamiento de todos los comandos mostrados anteri
 #### _Add_
 ```
 $node dist/funko-pops/yargs.js add --user pablo --id 3 --name "Ran Mouri" --desc "Classic Ran Mouri 1996" --type "Pop!" --genre "Anime" --franch "Detective Conan" --franchnum 42 --excl false --spcfeat "No tiene ninguna característica especial" --market 75
-```
-
-<span style="color:green">Nuevo Funko con el ID = 3 se ha añadido a la colección de pablo
-```
+Nuevo Funko con el ID = 3 se ha añadido a la colección de pablo [VERDE]
 
 $node dist/funko-pops/yargs.js add --user pablo --id 3 --name "Ran Mouri" --desc "Classic Ran Mouri 1996" --type "Pop!" --genre "Anime" --franch "Detective Conan" --franchnum 42 --excl false --spcfeat "No tiene ninguna característica especial" --market 75
-Ya existe un Funko con el ID = 3 en la colección de pablo
+Ya existe un Funko con el ID = 3 en la colección de pablo [ROJO]
 
 $node dist/funko-pops/yargs.js add --user pedro --id 3 --name "Ran Mouri" --desc "Classic Ran Mouri 1996" --type "Pop!" --genre "Anime" --franch "Detective Conan" --franchnum 42 --excl false --spcfeat "No tiene ninguna característica especial" --market 75
 El usuario pedro no tiene una colección
@@ -734,15 +731,93 @@ El usuario pedro no tiene una colección
 #### _Update_
 ```
 $node dist/funko-pops/yargs.js update --user pablo --id 3 market 100
-El Funko con el ID = 3 ha sido actualizado en la colección de pablo
+El Funko con el ID = 3 ha sido actualizado en la colección de pablo [VERDE]
 
 $node dist/funko-pops/yargs.js update --user pablo --id 17 market 100
-No existe ningún funko con el ID = 17 en la colección de pablo
+No existe ningún funko con el ID = 17 en la colección de pablo [ROJO]
 
 $node dist/funko-pops/yargs.js update --user pedro --id 17 market 100
-El usuario pedro no tiene una colección
+El usuario pedro no tiene una colección [ROJO]
 ```
+#### _List_
+```
+$node dist/funko-pops/yargs.js list --user pablo
+pablo Funko Pop collection
+----------------------------
+ID: 2
+Name: Ai Haibara
+Description: Classic Ai Haibara 1998
+Type: Pop!
+Genre: Anime
+Franchise: Detective Conan
+Franchise Number: 4
+Exclusive: true
+Special Features: No tiene ninguna característica especial
+Market Value: 33€ [NARANJA]
+----------------------------
+ID: 1
+Name: Conan Edogawa
+Description: Classic Conan Edogawa 1996
+Type: Pop!
+Genre: Anime
+Franchise: Detective Conan
+Franchise Number: 1
+Exclusive: true
+Special Features: No tiene ninguna característica especial
+Market Value: 100€ [VERDE]
+----------------------------
+ID: 4
+Name: Kogoro Mouri
+Description: Classic Kogoro Mouri 1996
+Type: Pop!
+Genre: Anime
+Franchise: Detective Conan
+Franchise Number: 33
+Exclusive: false
+Special Features: No tiene ninguna característica especial
+Market Value: 12€ [ROJO]
+----------------------------
+ID: 3
+Name: Ran Mouri
+Description: Classic Ran Mouri 1996
+Type: Pop!
+Genre: Anime
+Franchise: Detective Conan
+Franchise Number: 42
+Exclusive: false
+Special Features: No tiene ninguna característica especial
+Market Value: 75€ [AMARILLO]
+----------------------------
+```
+#### _Read_
+```
+$node dist/funko-pops/yargs.js read --user pablo --id 1
+ID: 1
+Name: Conan Edogawa
+Description: Classic Conan Edogawa 1996
+Type: Pop!
+Genre: Anime
+Franchise: Detective Conan
+Franchise Number: 1
+Exclusive: true
+Special Features: No tiene ninguna característica especial
+Market Value: 100€ [VERDE]
 
+$node dist/funko-pops/yargs.js read --user pablo --id 34
+No existe ningún funko con el ID = 34 en la colección de pablo [ROJO]
+```
+#### _Remove_
+```
+$node dist/funko-pops/yargs.js remove --user pablo --id 3
+Se ha eliminado correctamente el Funko con el ID = 3 en la colección de pablo [VERDE]
+
+$node dist/funko-pops/yargs.js remove --user pablo --id 31
+No existe ningún Funko con el ID = 31 en la colección de pablo [ROJO]
+```
+En los ejemplos anteriores se indica al lado de cada mensaje el color correspondite que tiene gracias al uso del _chalk_, ya que al ser bloques de texto, en _markdown_ no se pueden poner colores. A continuación veremos una serie de imágenes sacadas directamente desde la consola para mostrar el correcto funcionamiento de este paquete.
+![Imagen mostrando el uso de chalk](https://ibb.co/bRvmKfC)
+![Imagen mostrando el uso de chalk](https://ibb.co/tHsCRz1)
+![Imagen mostrando el uso de chalk](https://ibb.co/kSrpj2W)
 ## Conclusión
 
 ## Bibliografía
