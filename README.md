@@ -815,8 +815,11 @@ $node dist/funko-pops/yargs.js remove --user pablo --id 31
 No existe ningún Funko con el ID = 31 en la colección de pablo [ROJO]
 ```
 En los ejemplos anteriores se indica al lado de cada mensaje el color correspondite que tiene gracias al uso del _chalk_, ya que al ser bloques de texto, en _markdown_ no se pueden poner colores. A continuación veremos una serie de imágenes sacadas directamente desde la consola para mostrar el correcto funcionamiento de este paquete.
+\
 ![Imagen mostrando el uso de chalk](https://i.postimg.cc/Kc3n5Vkb/Captura-de-pantalla-de-2023-04-02-15-26-11.png)
+\
 ![Imagen mostrando el uso de chalk](https://i.postimg.cc/cC3w4gyC/Captura-de-pantalla-de-2023-04-02-15-34-26.png)
+\
 ![Imagen mostrando el uso de chalk](https://i.postimg.cc/V6pX89h2/Captura-de-pantalla-de-2023-04-02-15-35-08.png)
 ## Conclusión
 Con lo mostrado en este informe hemos aprendido varias cosas, principalemente relacionadas con el uso de la API síncrona de Node.js para trabajar con el sistema de ficheros, característica que hasta esta práctica no hemos visto y es fundamental saber trabajar con ficheros en cualquier lenguaje de programación.
@@ -826,20 +829,20 @@ También quiero destacar los dos paquetes implementados en esta pŕactica, prime
 \
 \
 Al igual que en la práctica anterior se han incluido los flujos de trabajo de GitHub Actions:
-* Tests: ![Tests][(https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR/actions/workflows/node.js.yml)
+* Tests: [![Tests](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR/actions/workflows/node.js.yml)
 * Coveralls: [![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR?branch=main)
 * Sonar-Cloud: [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ULL-ESIT-INF-DSI-2223_ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ULL-ESIT-INF-DSI-2223_ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR)
 
 ## Bibliografía
 Para la realización de esta práctica se han consultado las siguientes fuentes bibliográficas:
 \
-[Guion de la práctica 9](https://ull-esit-inf-dsi-2223.github.io/prct09-filesystem-funko-app/)
+* [Guion de la práctica 9](https://ull-esit-inf-dsi-2223.github.io/prct09-filesystem-funko-app/)
 \
-[API Síncrona](https://nodejs.org/docs/latest-v19.x/api/fs.html)
+* [API Síncrona](https://nodejs.org/docs/latest-v19.x/api/fs.html)
 \
-[Yargs](https://www.npmjs.com/package/yargs)
+* [Yargs](https://www.npmjs.com/package/yargs)
 \
-[Chalk](https://www.npmjs.com/package/chalk)
+* [Chalk](https://www.npmjs.com/package/chalk)
 
 
 

@@ -5,7 +5,10 @@
     "./src/ej-clase/filtermapprodreduce.ts",
     "./src/ej-clase/filtermapdivreduce.ts",
     "./src/ej-clase/filtermapreducetemplate.ts",
-    "./src/ej-clase/functions.ts"
+    "./src/ej-clase/functions.ts",
+    "./src/funko-pops/funko.ts",
+    "./src/funko-pops/yargs.ts",
+    "./src/funko-pops/utilities.ts"
   ],
   "out": "./docs" 
 }
