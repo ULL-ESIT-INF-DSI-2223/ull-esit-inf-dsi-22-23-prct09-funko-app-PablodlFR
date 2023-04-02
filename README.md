@@ -458,9 +458,9 @@ El comando desarrollado es el siguiente:
     }
   })
 ``` 
-Primero indicamos los parámetros que podrán ser usado en la línea de comandos, en este caso son todos los atributos que lod Funkos, ya que deseamos crear uno y añadirlo a la lista del usuario. A continuación comprobamos si existe un directorio con el nombre indicado en el paŕametro usuario, en caso de que no existe se envía un mensaje de error en rojo, haciendo uso del paquete _chalk_ como indica el guion, si el directorio del usuario existe, pasa a comprobar que la colección de dicho usuario no tiene un Funko con la misma ID, si se encuentra el dicho Funko se vuelve a enviar un mensaje de error. Una vez pasadas estas comprobaciones, creamos un _JSON_ con los datos pasados por la línea de comando y creamos el fichero que contendrá la información del Funko en el directorio del usuario, haciendo uso de _writeFileSync()_. Por último se envía un mensaje informativo al usuario usando _chalk_ en verde para indicar que todo ha funcionado correctamente.
+Primero indicamos los parámetros que podrán ser usado en la línea de comandos, en este caso son todos los atributos que los Funkos, ya que deseamos crear uno y añadirlo a la lista del usuario. A continuación, comprobamos si existe un directorio con el nombre indicado en el parámetro usuario, en caso de que no existir, se envía un mensaje de error en rojo, haciendo uso del paquete _chalk_ como indica el guion. Si el directorio del usuario existe, pasa a comprobar que la colección de dicho usuario no tiene un Funko con la misma ID, si se encuentra el dicho Funko se vuelve a enviar un mensaje de error. Una vez pasadas estas comprobaciones, creamos un _JSON_ con los datos pasados por la línea de comando y creamos el fichero que contendrá la información del Funko en el directorio del usuario, haciendo uso de _writeFileSync()_. Por último, se envía un mensaje informativo al usuario usando _chalk_ en verde para indicar que todo ha funcionado correctamente.
 ### Modificar un Funko de la lista
-En el caso de modificar un debemos de selecciona mediante la ID que Funko deseamos modificar y los parametros que queremos cambiar.
+En el caso de modificar un Funko debemos de seleccionar mediante la ID cuál deseamos modificar y los parámetros que queremos cambiar.
 \
 \
 El comando _update_ es el siguiente:
@@ -581,10 +581,10 @@ El comando _update_ es el siguiente:
     }
   })
 ```
-En este caso las opciones del _yargs_ relacionadas con los atributos a modificar no son obligatorios ya que, solo si indicarán aquellos que se deseen modificar. Se vuelven a realizar las comprobaciones relacionadas con la existencia del usuario y del Funko con la ID proporcionada. A continuación se comprueba que atributos han sido indicados para su modificación, es decir que no sea _undefined_, tras esto, se escribe en el fichero los cambios y se envía un mensaje con el _chalk_ en verde para informar al usuario de que todo ha ido correctamente.
+En este caso, las opciones del _yargs_ relacionadas con los atributos a modificar no son obligatorios ya que, solo se indicarán aquellos que se deseen modificar. Se vuelven a realizar las comprobaciones relacionadas con la existencia del usuario y del Funko con la ID proporcionada. A continuación se comprueba que atributos han sido indicados para su modificación, es decir, que no sea _undefined_, tras esto, se escribe en el fichero los cambios y se envía un mensaje con el _chalk_ en verde para informar al usuario que todo ha ido correctamente.
 \
 \
-En este comando cabe destacar el apartado del nombre del Funko, ya que el fichero JSON recibe el nombre del Funko, es por ello que si se cambia el nombre del Funko por la línea de comando se renombra también el nombre del fichero haciendo uso de _renameSync()_.
+En este comando cabe destacar el apartado del nombre del Funko, ya que el fichero JSON recibe el nombre del Funko, es por ello que, si se cambia el nombre del Funko por la línea de comando se renombra también el nombre del fichero haciendo uso de _renameSync()_.
 ### Eliminar un Funko de la lista
 En este apartado se deberá pasar un ID y eliminar el Funko correspondiente, siempre y cuando dicha ID exista en algún Funko.
 \
@@ -631,7 +631,7 @@ El comando _remove_ es el siguiente:
 ```
 Este comando tiene un funcionamiento más sencillo que los anteriores, vuelve a realizar las comprobaciones y en el caso de que se encuentra en la colección un Funko con la ID propocionada, el fichero correspondiente a este es borrado usando el comando _unlinkSync()_.
 ### Listar los Funkos existentes en una lista
-Este comando tiene el objetivo de mostrar por pantalla todos los Funkos pertenecientes a la colección de un usuario. En la parte del valor de mercado, se han creado cuatro rangos, mostando con chalk el color de cada uno de ellos de forma distinta tal y como se pide en el guion. Los rangos son los siguiente:
+Este comando tiene el objetivo de mostrar por pantalla todos los Funkos pertenecientes a la colección de un usuario. En la parte del valor de mercado, se han creado cuatro rangos, mostando con chalk el color de cada uno de ellos de forma distinta, tal y como, se pide en el guion. Los rangos son los siguiente:
 * [0, 25] -> Rojo.
 * (25, 50] -> Naranja.
 * (50 ,75] -> Amarillo.
@@ -714,9 +714,9 @@ El comando _read_ es el siguiente:
     }
   })
 ```
-La principal diferencia respecto al comando _list_ es que en este caso tenemos un _if()_ que comprueba si el ID del Funko es el mismo que el pasado por la línea de comando, si es así lo muestra y si no hay un Funko con la ID proporcionada, muestra su respectivo mensaje de error.
+La principal diferencia respecto al comando _list_ es que en este caso tenemos un _if()_ que comprueba si el ID del Funko es el mismo que el pasado por la línea de comando, si es así, lo muestra y si no hay un Funko con la ID proporcionada, muestra su respectivo mensaje de error.
 ### Funcionamiento
-A continuación veremos el funcionamiento de todos los comandos mostrados anteriormente.
+A continuación, veremos el funcionamiento de todos los comandos mostrados anteriormente.
 #### _Add_
 ```
 $node dist/funko-pops/yargs.js add --user pablo --id 3 --name "Ran Mouri" --desc "Classic Ran Mouri 1996" --type "Pop!" --genre "Anime" --franch "Detective Conan" --franchnum 42 --excl false --spcfeat "No tiene ninguna característica especial" --market 75
@@ -814,7 +814,7 @@ Se ha eliminado correctamente el Funko con el ID = 3 en la colección de pablo [
 $node dist/funko-pops/yargs.js remove --user pablo --id 31
 No existe ningún Funko con el ID = 31 en la colección de pablo [ROJO]
 ```
-En los ejemplos anteriores se indica al lado de cada mensaje el color correspondite que tiene gracias al uso del _chalk_, ya que al ser bloques de texto, en _markdown_ no se pueden poner colores. A continuación veremos una serie de imágenes sacadas directamente desde la consola para mostrar el correcto funcionamiento de este paquete.
+En los ejemplos anteriores se indica al lado de cada mensaje el color correspondite que tiene, gracias al uso del _chalk_, ya que al ser bloques de texto, en _markdown_ no se pueden poner colores. Seguidamente veremos una serie de imágenes sacadas directamente desde la consola para mostrar el correcto funcionamiento de este paquete.
 \
 ![Imagen mostrando el uso de chalk](https://i.postimg.cc/Kc3n5Vkb/Captura-de-pantalla-de-2023-04-02-15-26-11.png)
 \
@@ -823,7 +823,7 @@ En los ejemplos anteriores se indica al lado de cada mensaje el color correspond
 ![Imagen mostrando el uso de chalk](https://i.postimg.cc/V6pX89h2/Captura-de-pantalla-de-2023-04-02-15-35-08.png)
 \
 \
-Por último también se realizaron las pruebas correspondientes de la clase Funko, que consta de un único método _print()_:
+También se realizaron las pruebas correspondientes de la clase Funko que consta de un único método _print()_:
 ```
   function print test
     ✔ funko1.print() should return funko1
@@ -843,7 +843,7 @@ File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovere
 Con lo mostrado en este informe hemos aprendido varias cosas, principalemente relacionadas con el uso de la API síncrona de Node.js para trabajar con el sistema de ficheros, característica que hasta esta práctica no hemos visto y es fundamental saber trabajar con ficheros en cualquier lenguaje de programación.
 \
 \
-También quiero destacar los dos paquetes implementados en esta pŕactica, primero el _chalk_, que nos permite dar color a los elementes que aparecen por consola, muy útil para destacar cierta información y dar otra perspective al cliente que use el programa. Y el más importante _yargs_ que nos ha permitido crear nuestros propios comandos para interactuar con nuestra aplicación, no solo nos ha servido para saber una nueva forma de interactuar con nuestros programar, sino también para hacernos una idea de cómo funcionan los comandos, con sus paŕametros y opciones que usamos de forma tan habitual en _bash_.
+También quiero destacar los dos paquetes implementados en esta práctica, primero el _chalk_, que nos permite dar color a los elementes que aparecen por consola, muy útil para destacar cierta información y dar otra perspectiva al cliente que use el programa. Y el más importante, el _yargs_ que nos ha permitido crear nuestros propios comandos para interactuar con nuestra aplicación, no solo nos ha servido para conocer una nueva forma de interactuar con nuestros programas, sino también para hacernos una idea de cómo funcionan los comandos, con sus parámetros y opciones que usamos de forma tan habitual en _bash_.
 \
 \
 Al igual que en la práctica anterior se han incluido los flujos de trabajo de GitHub Actions:
