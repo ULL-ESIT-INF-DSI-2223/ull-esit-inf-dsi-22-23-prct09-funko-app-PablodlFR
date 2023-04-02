@@ -273,7 +273,461 @@ All files                   |     100 |      100 |     100 |     100 |
  functions.ts               |     100 |      100 |     100 |     100 |                   
 ----------------------------|---------|----------|---------|---------|-------------------
 ```
-## Ejercicio de guion
+## Ejercicio de guion - Aplicación de registro de Funko Pops
+Esta práctica consiste en implementar una aplicación para almacenar distintos Funko Pops en formato JSON pertenecientes a la colección de un usuario.
+\
+\
+Lo primero es crear una clase Funko con los elementos indicados en el guion de la práctica. La clase desarrollada es la siguiente:
+```TypeScript
+/**
+ * Class to create a Funko with a method to print it.
+ */
+export class Funko {
+  /**
+   * Funko's constructor
+   * @param id Number Funko's ID.
+   * @param name String Funko's name.
+   * @param description String Funko's description.
+   * @param type Funko's type.
+   * @param genre Funko's genre.
+   * @param franchise String Funko's franchise.
+   * @param franchiseNumber Number Funko's franchise number.
+   * @param exclusive Boolean to check if the Funko is exclusive or not.
+   * @param specialFeatures String for Funko's special features.
+   * @param marketValue Number for the Funko's market value.
+   */
+  constructor(private id: number, private name: string, private description: string, private type: Type, private genre: Genre, private franchise: FranchiseType, private franchiseNumber: number, private exclusive: boolean, private specialFeatures: string, private marketValue: number){
+  }
+
+  /**
+   * Print the Funko's information.
+   * @returns String with the Funko's information.
+   */
+  print() {
+    let str = "";
+    str = "ID: " + this.id + "\nName: " + this.name + "\nDescription: " + this.description + "\nType: " + this.type + "\nGenre: " + this.genre + "\nFranchise: " + this.franchise + "\nFranchise Number: " + this.franchiseNumber + "\nExclusive: " + this.exclusive + "\nSpecial Features: " + this.specialFeatures + "\n";
+    if (this.marketValue <= 25) {
+      str += chalk.red("Market Value: " + this.marketValue + "€");
+    } else if (this.marketValue > 25 && this.marketValue <= 50) {
+      str += chalk.hex('#FFA500')("Market Value: " + (this.marketValue + "€"));
+    } else if (this.marketValue > 50 && this.marketValue <= 75) {
+      str += chalk.yellow("Market Value: " + (this.marketValue + "€"));
+    } else if (this.marketValue > 75 && this.marketValue <= 100) {
+      str += chalk.green("Market Value: " + (this.marketValue + "€"));
+    }
+    return str;
+  }  
+}
+```
+Como podemos ver es una clase muy simple, donde se implementa el constructor con los atributos indicados y después tenemos una función _print()_ para imprimir por pantalla toda la información perteneciente a un Funko. Además, tal y como se indica en el guion, se han creado una serie de enumerados y tipo de datos para los atributos del tipo de Funko, género y franquicia.
+\
+\
+Estos son los siguientes:
+```TypeScript
+/**
+ * Enum to set the Funko's type.
+ */
+export enum Type {
+  POP = "Pop!",
+  POP_RIDES = "Pop! Rides",
+  VINYL_SODA = "Vinyl Soda",
+  VINYL_GOLD = "Vinyl Gold",
+}
+
+/**
+ * Enum to set the Funko's genre.
+ */
+export enum Genre {
+  ANIMATION = "Animación",
+  MOVIES_AND_TV = "Películas y TV",
+  VIDEOGAMES = "Videojuegos",
+  SPORTS = "Deportes",
+  MUSIC = "Música",
+  ANIME = "Anime",
+}
+
+/**
+ * New type for the Funko's franchise.
+ */
+type FranchiseType = "The Big Bang Theory" | "Detective Conan" | "Mario Bros" | "Pokémon" | "Sonic The Hedgehog"
+```
+Una vez creada la clase, pasamos a la parte donde gestionamos las colecciones de los usuarios mediante la línea de comandos usando el paquete _yargs_. Todo esto se encuentra en un fichero homónimo (yargs.ts). La gestión de las colecciones se realizará de la siguiente manera, en la raíz del proyecto tenemos el directorio _collections_, donde dentro de cada uno se encuentran tantos subdirectorios como usuarios, cada uno con el nombre del usuario, es de esta forma por la que sabemos si un usario tiene o no una colección y por último, dentro de cada directorio de usuario tenemos los Funkos en ficheros _JSON_ separados tal y como se pide en la práctica.
+\
+\
+A continuación pasaremos a comentar los distintos comandos implementados y su funcionamiento. Para todos se ha utilizado la API síncrona de Node.js con el fin de trabajar con el sistema de fichero.
+\
+\
+### Añadir un Funko a la lista
+El comando _add_ nos debe permitir añadir un Funko al directorio del usuario en cuestión con la información pasada por la línea de comandos.
+\
+\
+El comando desarrollado es el siguiente:
+```TypeScript
+/**
+ * Command add, to add a Funko to a user list.
+ */
+  .command('add', 'Adds a funko', {
+    id: {
+      description: 'Funko ID',
+      type: 'number',
+      demandOption: true
+    },
+    user: {
+      description: 'User',
+      type: 'string',
+      demandOption: true
+    },
+    name: {
+      description: 'Funko Name',
+      type: 'string',
+      demandOption: true
+    },
+    desc: {
+      description: 'Funko description',
+      type: 'string',
+      demandOption: true
+    },
+    type: {
+      description: 'Funko type',
+      type: 'string',
+      demandOption: true
+    },
+    genre: {
+      description: 'Genre of the funko series',
+      type: 'string',
+      demandOption: true
+    },
+    franch: {
+      description: 'Funko franchise',
+      type: 'string',
+      demandOption: true
+    },
+    franchnum: {
+      description: 'Funko franchise number',
+      type: 'number',
+      demandOption: true
+    },
+    excl: {
+      description: 'Is a exclusive funko?',
+      type: 'boolean',
+      demandOption: true
+    },
+    spcfeat: {
+      description: 'Funko special features',
+      type: 'string',
+      demandOption: true
+    },
+    market: {
+      description: 'Funko market value',
+      type: 'number',
+      demandOption: true
+    }
+  
+  }, (argv) => {
+    const dirPath = `collections/${argv.user}`;
+    let exist = false;
+    if (fs.existsSync(dirPath)) {
+      const files = fs.readdirSync(dirPath);
+      files.forEach(file => {
+        const filePath = `${dirPath}/${file}`;
+        const data = fs.readFileSync(filePath, 'utf-8');
+        const funkoJSON = JSON.parse(data); 
+        if (funkoJSON.id === argv.id) {
+          console.log(chalk.red.bold(`Ya existe un Funko con el ID = ${argv.id} en la colección de ${argv.user}`));
+          exist = true;
+        }
+      });  
+          
+      if (exist === false) {
+        const funkosJSON = {
+          id: argv.id,
+          name: argv.name,
+          description: argv.desc,
+          type: argv.type,
+          genre: argv.genre,
+          franchise: argv.franch,
+          franchiseNumber: argv.franchnum,
+          exclusive: argv.excl,
+          specialFeatures: argv.spcfeat,
+          marketValue: argv.market        
+        }
+        fs.writeFileSync(`${dirPath}/${argv.name}.json`, JSON.stringify(funkosJSON));
+        console.log(chalk.green.bold(`Nuevo Funko con el ID = ${argv.id} se ha añadido a la colección de ${argv.user}`));
+      }
+    } else {
+      console.log(chalk.red.bold(`El usuario ${argv.user} no tiene una colección`));
+      return;
+    }
+  })
+``` 
+Primero indicamos los parámetros que podrán ser usado en la línea de comandos, en este caso son todos los atributos que lod Funkos, ya que deseamos crear uno y añadirlo a la lista del usuario. A continuación comprobamos si existe un directorio con el nombre indicado en el paŕametro usuario, en caso de que no existe se envía un mensaje de error en rojo, haciendo uso del paquete _chalk_ como indica el guion, si el directorio del usuario existe, pasa a comprobar que la colección de dicho usuario no tiene un Funko con la misma ID, si se encuentra el dicho Funko se vuelve a enviar un mensaje de error. Una vez pasadas estas comprobaciones, creamos un _JSON_ con los datos pasados por la línea de comando y creamos el fichero que contendrá la información del Funko en el directorio del usuario, haciendo uso de _writeFileSync()_. Por último se envía un mensaje informativo al usuario usando _chalk_ en verde para indicar que todo ha funcionado correctamente.
+### Modificar un Funko de la lista
+En el caso de modificar un debemos de selecciona mediante la ID que Funko deseamos modificar y los parametros que queremos cambiar.
+\
+\
+El comando _update_ es el siguiente:
+```TypeScript
+  /**
+   * Command update, to update a Funko from a user list.
+   */
+  .command('update', 'update a funko', {
+    id: {
+      description: 'Funko ID',
+      type: 'number',
+      demandOption: true
+    },
+    user: {
+      description: 'User',
+      type: 'string',
+      demandOption: true
+    },
+    name: {
+      description: 'Funko Name',
+      type: 'string',
+      demandOption: false
+    },
+    desc: {
+      description: 'Funko description',
+      type: 'string',
+      demandOption: false
+    },
+    type: {
+      description: 'Funko type',
+      type: 'string',
+      demandOption: false
+    },
+    genre: {
+      description: 'Genre of the funko series',
+      type: 'string',
+      demandOption: false
+    },
+    franch: {
+      description: 'Funko franchise',
+      type: 'string',
+      demandOption: false
+    },
+    franchnum: {
+      description: 'Funko franchise number',
+      type: 'number',
+      demandOption: false
+    },
+    excl: {
+      description: 'Is a exclusive funko?',
+      type: 'boolean',
+      demandOption: false
+    },
+    spcfeat: {
+      description: 'Funko special features',
+      type: 'string',
+      demandOption: false
+    },
+    market: {
+      description: 'Funko market value',
+      type: 'number',
+      demandOption: false
+    }
+
+  }, (argv) => {
+    const dirPath = `collections/${argv.user}`;
+    let exist = false;
+    if (fs.existsSync(dirPath)) {
+      const files = fs.readdirSync(dirPath);
+      files.forEach(file => {
+        const filePath = `${dirPath}/${file}`;
+        const data = fs.readFileSync(filePath, 'utf-8');
+        const funkoJSON = JSON.parse(data); 
+        if (funkoJSON.id === argv.id) {          
+          exist = true;
+          if (argv.name != undefined) {   
+            fs.renameSync(filePath, `${dirPath}/${argv.name}.json`)         
+            funkoJSON.name = argv.name;
+          } else {
+            const fileName = path.parse(filePath).name;
+            funkoJSON.name = fileName;
+          }
+          if (argv.desc != undefined) {
+            funkoJSON.desc = argv.desc;
+          }
+          if (argv.type != undefined) {
+            funkoJSON.type = argv.type;
+          }
+          if (argv.genre != undefined) {
+            funkoJSON.genre = argv.genre;
+          }
+          if (argv.franch != undefined) {
+            funkoJSON.franch = argv.franch;
+          }
+          if (argv.franchnum != undefined) {
+            funkoJSON.franchnum = argv.franchnum;
+          }
+          if (argv.excl != undefined) {
+            funkoJSON.excl = argv.excl;
+          }
+          if (argv.spcfeat != undefined) {
+            funkoJSON.spcfeat = argv.spcfeat;
+          }
+          if (argv.market != undefined) {
+            funkoJSON.marketValue = argv.market;
+          }
+          fs.writeFileSync(`${dirPath}/${funkoJSON.name}.json`, JSON.stringify(funkoJSON, null, 2));
+          console.log(chalk.green.bold(`El Funko con el ID = ${argv.id} ha sido actualizado en la colección de ${argv.user}`));
+          exist = true;
+        }        
+      });
+      if (exist === false) {
+        console.log(chalk.red.bold(`No existe ningún funko con el ID = ${argv.id} en la colección de ${argv.user}`));
+      }  
+    } else {
+      console.log(chalk.red.bold(`El usuario ${argv.user} no tiene una colección`));
+      return;
+    }
+  })
+```
+En este caso las opciones del _yargs_ relacionadas con los atributos a modificar no son obligatorios ya que, solo si indicarán aquellos que se deseen modificar. Se vuelven a realizar las comprobaciones relacionadas con la existencia del usuario y del Funko con la ID proporcionada. A continuación se comprueba que atributos han sido indicados para su modificación, es decir que no sea _undefined_, tras esto, se escribe en el fichero los cambios y se envía un mensaje con el _chalk_ en verde para informar al usuario de que todo ha ido correctamente.
+\
+\
+En este comando cabe destacar el apartado del nombre del Funko, ya que el fichero JSON recibe el nombre del Funko, es por ello que si se cambia el nombre del Funko por la línea de comando se renombra también el nombre del fichero haciendo uso de _renameSync()_.
+### Eliminar un Funko de la lista
+En este apartado se deberá pasar un ID y eliminar el Funko correspondiente, siempre y cuando dicha ID exista en algún Funko.
+\
+\
+El comando _remove_ es el siguiente:
+```TypeScript
+/**
+   * Command remove, to remove a Funko from a list.
+   */
+    .command('remove', 'Remove a funko from the collection', {
+      id: {
+        description: 'Funko ID',
+        type: 'number',
+        demandOption: true
+      },
+      user: {
+        description: 'User',
+        type: 'string',
+        demandOption: true
+      }
+  }, (argv) => {
+    const dirPath = `collections/${argv.user}`;
+      if (fs.existsSync(dirPath)) {
+        let found = false;
+        const files = fs.readdirSync(dirPath);
+        files.forEach(file => {
+          const filePath = `${dirPath}/${file}`;
+          const data = fs.readFileSync(filePath, 'utf-8');
+          const funkoJSON = JSON.parse(data);
+          if (funkoJSON.id === argv.id) {
+            fs.unlinkSync(filePath);
+            console.log(chalk.green.bold(`Se ha eliminado correctamente el Funko con el ID = ${argv.id} en la colección de ${argv.user}`))
+            found = true;       
+          }    
+        });
+        if (found == false) {
+          console.log(chalk.red.bold(`No existe ningún Funko con el ID = ${argv.id} en la colección de ${argv.user}`));
+        }
+      } else {
+        console.log(chalk.red.bold(`El usuario ${argv.user} no tiene una colección`));
+        return;
+      }
+  })
+```
+Este comando tiene un funcionamiento más sencillo que los anteriores, vuelve a realizar las comprobaciones y en el caso de que se encuentra en la colección un Funko con la ID propocionada, el fichero correspondiente a este es borrado usando el comando _unlinkSync()_.
+### Listar los Funkos existentes en una lista
+Este comando tiene el objetivo de mostrar por pantalla todos los Funkos pertenecientes a la colección de un usuario. En la parte del valor de mercado, se han creado cuatro rangos, mostando con chalk el color de cada uno de ellos de forma distinta tal y como se pide en el guion. Los rangos son los siguiente:
+* [0, 25] -> Rojo.
+* (25, 50] -> Naranja.
+* (50 ,75] -> Amarillo.
+* (75, 100] -> Verde.
+\
+\
+El comando _list_ es el siguiente:
+```TypeScript
+/**
+   * Commando list, to list the whole Funko's collection from a user.
+   */
+  .command('list', 'List a funko collection', {
+    user: {
+      description: 'User',
+      type: 'string',
+      demandOption: true
+    }
+  }, (argv) => {
+    const dirPath = `collections/${argv.user}`;
+    if (fs.existsSync(dirPath)) {
+      const files = fs.readdirSync(dirPath);
+      console.log(chalk.white.bold(`${argv.user} Funko Pop collection`));
+      console.log("----------------------------");
+      files.forEach(file => {
+        const filePath = `${dirPath}/${file}`;
+        const data = fs.readFileSync(filePath, 'utf-8');
+        const funkoJSON = JSON.parse(data);        
+        const funko = new Funko(funkoJSON.id, funkoJSON.name, funkoJSON.description, funkoJSON.type, funkoJSON.genre, funkoJSON.franchise, funkoJSON.franchiseNumber, funkoJSON.exclusive, funkoJSON.specialFeatures, funkoJSON.marketValue);
+        console.log(funko.print());    
+        console.log("----------------------------");  
+      });
+    } else {
+      console.log(chalk.red.bold(`El usuario ${argv.user} no tiene una colección`));
+      return;
+    }
+  })
+```
+Realiza las comprobaciones pertinentes, enviando mensajes de error siempre que sea necesario y por cada uno de los archivos JSON que se encuentran en el directorio del usuario, es decir, por cada Funko de la colección, se lee, se parsea el JSON y con los valores correspondientes se llama al constructor de la clase Funko y posteriormente al método _print()_ y nos muestra toda la colección por pantalla.
+### Mostrar la información de un funko concreto existente en la lista
+Este comando tiene el objetivo de mostrar un único Funko de la colección, siendo este el correpondiente al ID pasado por línea de comandos. En este comando también se tiene en cuenta el código de color para el valor de mercado mencionado en el comando anterior.
+\
+\
+El comando _read_ es el siguiente:
+```TypeScript
+/**
+   * Command read, to read a concret Funko from a user collection.
+   */
+  .command('read', 'Show a concrete funko from the collection', {
+    id: {
+      description: 'Funko ID',
+      type: 'number',
+      demandOption: true
+    },
+    user: {
+      description: 'User',
+      type: 'string',
+      demandOption: true
+    }
+  }, (argv) => {
+    const dirPath = `collections/${argv.user}`;
+    if (fs.existsSync(dirPath)) {
+      let found = false;
+      const files = fs.readdirSync(dirPath);
+      files.forEach(file => {
+        const filePath = `${dirPath}/${file}`;
+        const data = fs.readFileSync(filePath, 'utf-8');
+        const funkoJSON = JSON.parse(data);
+        if (funkoJSON.id === argv.id) {
+          const funko = new Funko(funkoJSON.id, funkoJSON.name, funkoJSON.description, funkoJSON.type, funkoJSON.genre, funkoJSON.franchise, funkoJSON.franchiseNumber, funkoJSON.exclusive, funkoJSON.specialFeatures, funkoJSON.marketValue);      
+          console.log(funko.print());   
+          found = true;       
+        }    
+      });
+      if (found == false) {
+        console.log(chalk.red.bold(`No existe ningún funko con el ID = ${argv.id} en la colección de ${argv.user}`));
+      }
+    } else {
+      console.log(chalk.red.bold(`El usuario ${argv.user} no tiene una colección`));
+      return;
+    }
+  })
+```
+La principal diferencia respecto al comando _list_ es que en este caso tenemos un _if()_ que comprueba si el ID del Funko es el mismo que el pasado por la línea de comando, si es así lo muestra y si no hay un Funko con la ID proporcionada, muestra su respectivo mensaje de error.
+### Funcionamiento
+A continuación veremos el funcionamiento de todos los comandos mostrados anteriormente.
+#### _Add_
+```
+```
+
+## Conclusión
+
+## Bibliografía
+
+
 [![Tests](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR/actions/workflows/node.js.yml)
 [![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR?branch=main)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ULL-ESIT-INF-DSI-2223_ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ULL-ESIT-INF-DSI-2223_ull-esit-inf-dsi-22-23-prct09-funko-app-PablodlFR)
