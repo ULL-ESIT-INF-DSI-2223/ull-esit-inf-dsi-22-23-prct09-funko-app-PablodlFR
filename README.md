@@ -815,9 +815,9 @@ $node dist/funko-pops/yargs.js remove --user pablo --id 31
 No existe ningún Funko con el ID = 31 en la colección de pablo [ROJO]
 ```
 En los ejemplos anteriores se indica al lado de cada mensaje el color correspondite que tiene gracias al uso del _chalk_, ya que al ser bloques de texto, en _markdown_ no se pueden poner colores. A continuación veremos una serie de imágenes sacadas directamente desde la consola para mostrar el correcto funcionamiento de este paquete.
-![Imagen mostrando el uso de chalk](https://ibb.co/bRvmKfC)
-![Imagen mostrando el uso de chalk](https://ibb.co/tHsCRz1)
-![Imagen mostrando el uso de chalk](https://ibb.co/kSrpj2W)
+![Imagen mostrando el uso de chalk](https://i.postimg.cc/Kc3n5Vkb/Captura-de-pantalla-de-2023-04-02-15-26-11.png)
+![Imagen mostrando el uso de chalk](https://i.postimg.cc/cC3w4gyC/Captura-de-pantalla-de-2023-04-02-15-34-26.png)
+![Imagen mostrando el uso de chalk](https://i.postimg.cc/V6pX89h2/Captura-de-pantalla-de-2023-04-02-15-35-08.png)
 ## Conclusión
 
 ## Bibliografía
